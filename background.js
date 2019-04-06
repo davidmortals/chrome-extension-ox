@@ -1,6 +1,5 @@
 //
 var targetUrl = "";
-var notificationHandle = "";
 
 /*
   Displays a notification with the current time. Requires "notifications"
@@ -11,14 +10,16 @@ function show() {
   var time = /(..)(:..)/.exec(new Date()); // The prettyprinted time.
   var hour = time[1] % 12 || 12; // The prettyprinted hour.
   var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
-  notificationHandle = new Notification(hour + time[2] + ' ' + period, {
-    icon: 'assets/icon-large.png',
-    body: targetUrl + " requested"
-  });
+  var notificationHandle = new Notification(
+    hour + time[2] + ' ' + period, {
+      icon: 'assets/icon-large.png',
+      body: targetUrl + " requested",
+      tag: "bgNotify"
+    }
+  );
 
-  setTimeout(function () {
-    notificationHandle.cancel();
-  }, 2000);
+  setTimeout(notificationHandle.close.bind(notificationHandle), 3000);
+
 }
 
 //
