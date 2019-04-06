@@ -1,5 +1,5 @@
 # chrome-extension-ox
-chrome extension, open a link and close it on done
+chrome extension, open a link in background and notify user on done
 
 
 # reference
