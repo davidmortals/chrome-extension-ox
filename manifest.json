@@ -1,18 +1,29 @@
 {
-  "manifest_version": 2,
-  "name": "Open and close link",
-  "short_name": "openCloseLink",
-  "description": "Open target link in new tab and close it on success",
-  "version": "0.0.1",
-  "author": "David Mortals",
-  "minimum_chrome_version": "38",
-  "permissions": [
-    "contextMenus", 
-    "tabs"],
-  "icons": {
-    "16": "assets/icon-bitty.png",
-    "48": "assets/icon-small.png",
-    "128": "assets/icon-large.png"
-  },
-  "background": {"page": "background.html"}
+    "manifest_version": 2,
+    "name": "Open link in background",
+    "short_name": "openBackgroundLink",
+    "description": "Open target link in background and notify user",
+    "version": "0.0.2",
+    "author": "David Mortals",
+    "minimum_chrome_version": "38",
+    "permissions": [
+        "notifications",
+        "contextMenus",
+        "tabs",
+        "https://*/",
+        "http://*/"
+    ],
+    "icons": {
+        "16": "assets/icon-bitty.png",
+        "48": "assets/icon-small.png",
+        "128": "assets/icon-large.png"
+    },
+    "web_accessible_resources": [
+        "assets/icon-small.png"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    }
 }
