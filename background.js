@@ -6,28 +6,35 @@ var targetUrl = "";
   permission in the manifest file (or calling
   "Notification.requestPermission" beforehand).
 */
-function show() {
+function show(msg, timeout) {
   var time = /(..)(:..)/.exec(new Date()); // The prettyprinted time.
   var hour = time[1] % 12 || 12; // The prettyprinted hour.
   var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
+
+  if (timeout == "") {
+    timeout = 2000;
+  }
   var notificationHandle = new Notification(
     hour + time[2] + ' ' + period, {
       icon: 'assets/icon-large.png',
-      body: targetUrl + " requested",
+      body: msg,
       tag: "bgNotify"
     }
   );
 
-  setTimeout(notificationHandle.close.bind(notificationHandle), 3000);
+  // hide notification after timeout ms
+  setTimeout(notificationHandle.close.bind(notificationHandle), timeout);
 
 }
 
 //
 handleStateChange = function (e) {
   if (this.readyState == 4 && this.status == 200) {
-    show(targetUrl);
+    show(targetUrl + " requested", 2000);
   } else if (this.status != 0 && this.status != 200) {
-    console.log("XMLHttpRequest " + targetUrl + " failed: readyState=" + this.readyState + ", this.status=" + this.status);
+    var msg = "XMLHttpRequest " + targetUrl + " failed: readyState=" + this.readyState + ", this.status=" + this.status;
+    console.log(msg);
+    show(msg, 5000);
   }
 };
 
@@ -35,7 +42,6 @@ handleStateChange = function (e) {
 openAndCloseLink = function (e) {
   //
   targetUrl = e.linkUrl;
-  // chrome.tabs.create({url: targetUrl});
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = handleStateChange;

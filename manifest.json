@@ -1,17 +1,18 @@
 {
     "manifest_version": 2,
     "name": "Open link in background",
-    "short_name": "openBackgroundLink",
+    "short_name": "BackgroundLink",
     "description": "Open target link in background and notify user",
     "version": "0.0.2",
     "author": "David Mortals",
     "minimum_chrome_version": "38",
     "permissions": [
         "notifications",
-        "contextMenus",
-        "tabs",
-        "https://*/",
-        "http://*/"
+        "activeTab",
+        "contextMenus"
+    ],
+    "optional_permissions": [
+        "<all_urls>"
     ],
     "icons": {
         "16": "assets/icon-bitty.png",
