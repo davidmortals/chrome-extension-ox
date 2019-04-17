@@ -3,13 +3,15 @@
     "name": "Open link in background",
     "short_name": "BackgroundLink",
     "description": "Open target link in background and notify user",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "David Mortals",
     "minimum_chrome_version": "38",
     "permissions": [
         "notifications",
         "activeTab",
-        "contextMenus"
+        "contextMenus",
+		"https://*/",
+		"http://*/"
     ],
     "optional_permissions": [
         "<all_urls>"
